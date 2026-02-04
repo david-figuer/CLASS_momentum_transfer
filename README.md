@@ -1,120 +1,201 @@
-CLASS: Cosmic Linear Anisotropy Solving System  {#mainpage}
-==============================================
+CLASS with Dark Energy–Dark Matter Elastic Interaction
 
-Authors: Julien Lesgourgues, Thomas Tram, Nils Schoeneberg
+This repository contains a modified version of CLASS (Cosmic Linear Anisotropy Solving System) implementing an elastic momentum-transfer interaction between Dark Energy (DE) and Dark Matter (DM) at the level of cosmological perturbations.
 
-with several major inputs from other people, especially Benjamin
-Audren, Simon Prunet, Jesus Torrado, Miguel Zumalacarregui, Francesco
-Montanari, Deanna Hooper, Samuel Brieden, Daniel Meinert, Matteo Lucca, etc.
+The model implemented in this code is based on a series of peer-reviewed publications and a doctoral thesis developed by the author of this repository. Any scientific use of this code requires citation of at least the first reference listed in the Citations section below.
 
-For download and information, see http://class-code.net
+This version corresponds to version 1.0 of the CLASS DE–DM elastic interaction model, developed starting from CLASS v2.7.2.
 
+---------------------------------------------------------------------
 
-Compiling CLASS and getting started
------------------------------------
+Origin and attribution
 
-(the information below can also be found on the webpage, just below
-the download button)
+CLASS is originally developed by:
+- Julien Lesgourgues
+- Thomas Tram
+- Nils Schoeneberg
 
-Download the code from the webpage and unpack the archive (tar -zxvf
-class_vx.y.z.tar.gz), or clone it from
-https://github.com/lesgourg/class_public. Go to the class directory
-(cd class/ or class_public/ or class_vx.y.z/) and compile (make clean;
-make class). You can usually speed up compilation with the option -j:
-make -j class. If the first compilation attempt fails, you may need to
-open the Makefile and adapt the name of the compiler (default: gcc),
-of the optimization flag (default: -O4 -ffast-math) and of the OpenMP
-flag (default: -fopenmp; this flag is facultative, you are free to
-compile without OpenMP if you don't want parallel execution; note that
-you need the version 4.2 or higher of gcc to be able to compile with
--fopenmp). Many more details on the CLASS compilation are given on the
-wiki page
+with major contributions from many other authors.
 
-https://github.com/lesgourg/class_public/wiki/Installation
-
-(in particular, for compiling on Mac >= 10.9 despite of the clang
-incompatibility with OpenMP).
-
-To check that the code runs, type:
-
-    ./class explanatory.ini
-
-The explanatory.ini file is THE reference input file, containing and
-explaining the use of all possible input parameters. We recommend to
-read it, to keep it unchanged (for future reference), and to create
-for your own purposes some shorter input files, containing only the
-input lines which are useful for you. Input files must have a *.ini
-extension. We provide an example of an input file containing a
-selection of the most used parameters, default.ini, that you may use as a
-starting point.
-
-If you want to play with the precision/speed of the code, you can use
-one of the provided precision files (e.g. cl_permille.pre) or modify
-one of them, and run with two input files, for instance:
-
-    ./class test.ini cl_permille.pre
-
-The files *.pre are suppposed to specify the precision parameters for
-which you don't want to keep default values. If you find it more
-convenient, you can pass these precision parameter values in your *.ini
-file instead of an additional *.pre file.
-
-The automatically-generated documentation is located in
-
-    doc/manual/html/index.html
-    doc/manual/CLASS_manual.pdf
-
-On top of that, if you wish to modify the code, you will find lots of
-comments directly in the files.
-
-Python
-------
-
-To use CLASS from python, or ipython notebooks, or from the Monte
-Python parameter extraction code, you need to compile not only the
-code, but also its python wrapper. This can be done by typing just
-'make' instead of 'make class' (or for speeding up: 'make -j'). More
-details on the wrapper and its compilation are found on the wiki page
-
-https://github.com/lesgourg/class_public/wiki
-
-Plotting utility
-----------------
-
-Since version 2.3, the package includes an improved plotting script
-called CPU.py (Class Plotting Utility), written by Benjamin Audren and
-Jesus Torrado. It can plot the Cl's, the P(k) or any other CLASS
-output, for one or several models, as well as their ratio or percentage
-difference. The syntax and list of available options is obtained by
-typing 'pyhton CPU.py -h'. There is a similar script for MATLAB,
-written by Thomas Tram. To use it, once in MATLAB, type 'help
-plot_CLASS_output.m'
-
-Developing the code
---------------------
-
-If you want to develop the code, we suggest that you download it from
-the github webpage
-
+Original CLASS repository:
 https://github.com/lesgourg/class_public
 
-rather than from class-code.net. Then you will enjoy all the feature
-of git repositories. You can even develop your own branch and get it
-merged to the public distribution. For related instructions, check
+This repository is a scientific fork of CLASS.
+The original structure, philosophy, and licensing of CLASS are preserved.
 
-https://github.com/lesgourg/class_public/wiki/Public-Contributing
+---------------------------------------------------------------------
 
-Using the code
---------------
+Structure of the modifications
 
-You can use CLASS freely, provided that in your publications, you cite
-at least the paper `CLASS II: Approximation schemes <http://arxiv.org/abs/1104.2933>`. Feel free to cite more CLASS papers!
+All modifications introduced in this repository are explicitly delimited in the source code by the markers:
 
-Support
--------
+Modification_momentum_transfer{
+    ... modified code ...
+Modification_momentum_transfer}
 
-To get support, please open a new issue on the
+This convention allows the user to:
+- easily identify all changes with respect to vanilla CLASS,
+- track the physical implementation of the DE–DM interaction,
+- distinguish original CLASS code from model-specific additions.
 
-https://github.com/lesgourg/class_public
+No undocumented or hidden changes are present outside these blocks.
 
-webpage!
+---------------------------------------------------------------------
+
+Physical model
+
+This code implements an elastic scattering (momentum transfer) interaction between Dark Energy and Dark Matter, following the theoretical framework developed in the references listed in the Citations section.
+
+The interaction modifies the velocity (theta) equations of DE and DM at the level of linear perturbations.
+
+---------------------------------------------------------------------
+
+Dark Energy description
+
+Dark Energy is treated using the fluid scheme.
+The PPF scheme must be disabled.
+
+To correctly activate the model, the input .ini file must contain:
+
+use_ppf = no
+Omega_Lambda = 0
+gauge = newtonian
+
+---------------------------------------------------------------------
+
+Stability considerations
+
+For w_DE > -1:
+- the coupling constant must be positive to avoid instabilities,
+- a suppression effect appears.
+
+For w_DE < -1:
+- the coupling constant must be negative to ensure stability,
+- no suppression effect appears.
+
+---------------------------------------------------------------------
+
+New model parameter
+
+The coupling parameter denoted as alpha* in the reference papers is implemented in the code as:
+
+alpha_model
+
+Definition in the code:
+
+- input.c
+  Declared as a new input parameter and assigned through class_read_double.
+  Default value: alpha_model = 0.0
+
+- background.h
+  Declared as:
+  double alpha_model;
+
+---------------------------------------------------------------------
+
+Modified perturbation equations
+
+The interaction is implemented in the Newtonian gauge by modifying the perturbation equations in perturbations.c.
+
+Dark Matter velocity equation
+
+Original CLASS equation:
+
+dy[pv->index_pt_theta_cdm] =
+  - a_prime_over_a * y[pv->index_pt_theta_cdm]
+  + metric_euler;
+
+Modified equation:
+
+dy[pv->index_pt_theta_cdm] =
+  - a_prime_over_a * y[pv->index_pt_theta_cdm]
+  + metric_euler
+  + (pba->alpha_model * pow(a,4) * pba->H0 / pba->Omega0_cdm)
+    * (y[pv->index_pt_theta_fld] - y[pv->index_pt_theta_cdm]);
+
+Corresponding coupling term:
+
+C.T = (alpha* · H0 · a^4 / Omega_DM) · (theta_DE − theta_DM)
+
+---------------------------------------------------------------------
+
+Dark Energy velocity equation
+
+Original CLASS equation:
+
+dy[pv->index_pt_theta_fld] =
+  -(1 - 3*cs2) * a_prime_over_a * y[pv->index_pt_theta_fld]
+  + cs2 * k2 / (1 + w_fld) * y[pv->index_pt_delta_fld]
+  + metric_euler;
+
+Modified equation:
+
+dy[pv->index_pt_theta_fld] =
+  -(1 - 3*cs2) * a_prime_over_a * y[pv->index_pt_theta_fld]
+  + cs2 * k2 / (1 + w_fld) * y[pv->index_pt_delta_fld]
+  + metric_euler
+  - (pba->alpha_model * pow(a,4 + 3*w_fld) * pba->H0
+     / (pba->Omega0_fld * (1 + w_fld)))
+    * (y[pv->index_pt_theta_fld] - y[pv->index_pt_theta_cdm]);
+
+Corresponding coupling term:
+
+C.T = − (alpha* · H0 · a^(4 + 3 w_DE) / (Omega_DE · (1 + w_DE)))
+      · (theta_DE − theta_DM)
+
+---------------------------------------------------------------------
+
+Input files
+
+A reference input file mymodel.ini is provided and plays the same role as explanatory.ini in vanilla CLASS.
+
+- It contains all available options for this modified version.
+- Users are encouraged to create smaller .ini files including only the needed parameters.
+- The parameters use_ppf = no, Omega_Lambda = 0, and gauge = newtonian must always be set.
+
+---------------------------------------------------------------------
+
+Compilation and usage
+
+Compile as standard CLASS:
+
+make -j class
+
+Run with:
+
+./class mymodel.ini
+
+To compile the Python wrapper:
+
+make -j
+
+---------------------------------------------------------------------
+
+Citations (mandatory)
+
+If you use this code in scientific work, you must cite at least the first reference below.
+Additional citations are strongly encouraged when relevant.
+
+1. https://inspirehep.net/literature/1849615
+2. https://inspirehep.net/literature/1869592
+3. https://inspirehep.net/literature/2156882
+4. https://inspirehep.net/literature/2615535
+5. https://inspirehep.net/literature/2765256
+6. https://inspirehep.net/literature/2842645
+7. Doctoral thesis (partial): https://inspirehep.net/literature/2722259
+
+---------------------------------------------------------------------
+
+License
+
+This code inherits the same license as the original CLASS distribution.
+Users must comply with the CLASS license and citation policy.
+
+---------------------------------------------------------------------
+
+Contact
+
+Questions, doubts, or comments regarding this implementation are welcome.
+
+David Figuer
+davidfiguer@usal.es
