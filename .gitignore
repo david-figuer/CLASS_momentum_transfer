@@ -1,0 +1,12 @@
+*.tar.xz
+*.zip
+*.csv
+*.dat
+*.bin
+
+venv/
+.venv/
+node_modules/
+
+__pycache__/
+.DS_Store
