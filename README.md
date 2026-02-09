@@ -1,8 +1,8 @@
 # CLASS with Dark Energy–Dark Matter Elastic Interaction
 
-This repository contains a **modified version of CLASS (Cosmic Linear Anisotropy Solving System)** implementing an **elastic momentum-transfer interaction between Dark Energy (DE) and Dark Matter (DM)** at the level of cosmological perturbations.
+This repository contains a **modified version of CLASS (Cosmic Linear Anisotropy Solving System)** implementing an **elastic momentum transfer interaction between Dark Energy (DE) and Dark Matter (DM)** at the level of cosmological perturbations.
 
-The model implemented in this code is based on a series of peer-reviewed publications and a doctoral thesis developed by the author of this repository (**David Figueruelo**) in collaboration with others (José Beltrán Jiménez, Dario Bettoni, and Florencia A. Teppa Pannia). **Any scientific use of this code requires citation of at least the first reference listed in the Citations section below.**
+The model implemented in this code is based on a series of peer-reviewed publications and a doctoral thesis developed by the author of this repository (**David Figueruelo**) in collaboration with others (Jose Beltrán Jiménez, Dario Bettoni, and Florencia A. Teppa Pannia). **Any scientific use of this code requires citation of at least the first reference listed in the Citations section below.**
 
 This implementation was originally developed starting from **CLASS v2.7.2**. The **current public version of this repository corresponds to CLASS v3.3.4**.
 
@@ -10,7 +10,7 @@ This implementation was originally developed starting from **CLASS v2.7.2**. The
 
 ## Related Codes
 
-An equivalent implementation of the DE–DM momentum-transfer model based on **CAMB** can be found at:
+An equivalent implementation of the DE–DM momentum transfer model based on **CAMB** can be found at:
 
 - [CAMB_DMDE_momentum_transfer](https://github.com/fateppapannia/CAMB_DMDE_momentum_transfer)
 
@@ -30,7 +30,7 @@ As this code is a modified version of CLASS, users must also comply with the **c
 **CLASS II: Approximation schemes**  
 https://arxiv.org/abs/1104.2933
 
-in addition to the model-specific references listed below.
+in addition to the model specific references listed below.
 
 ---
 
