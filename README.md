@@ -145,5 +145,5 @@ Inherits the license and citation policy of CLASS.
 
 ## Contact
 
-David Figuer  
-davidfiguer@usal.es
+David Figueruelo  
+david.figueruelo@ehu.eus
