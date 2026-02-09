@@ -2,10 +2,17 @@
 
 This repository contains a **modified version of CLASS (Cosmic Linear Anisotropy Solving System)** implementing an **elastic momentum-transfer interaction between Dark Energy (DE) and Dark Matter (DM)** at the level of cosmological perturbations.
 
-The model implemented in this code is based on a series of peer-reviewed publications and a doctoral thesis developed by the author of this repository. **Any scientific use of this code requires citation of at least the first reference listed in the Citations section below.**
+The model implemented in this code is based on a series of peer-reviewed publications and a doctoral thesis developed by the author of this repository (**David Figueruelo**) in collaboration with others (José Beltrán Jiménez, Dario Bettoni, and Florencia A. Teppa Pannia). **Any scientific use of this code requires citation of at least the first reference listed in the Citations section below.**
 
-This implementation was originally developed starting from **CLASS v2.7.2**.  
-The **current public version of this repository corresponds to CLASS v3.3.4**.
+This implementation was originally developed starting from **CLASS v2.7.2**. The **current public version of this repository corresponds to CLASS v3.3.4**.
+
+---
+
+## Related Codes
+
+An equivalent implementation of the DE–DM momentum-transfer model based on **CAMB** can be found at:
+
+- [CAMB_DMDE_momentum_transfer](https://github.com/fateppapannia/CAMB_DMDE_momentum_transfer)
 
 ---
 
@@ -16,7 +23,7 @@ CLASS is originally developed by **Julien Lesgourgues**, **Thomas Tram**, and **
 Original CLASS repository:  
 https://github.com/lesgourg/class_public
 
-This repository is **NOT an official GitHub fork of CLASS**. It is an **independent repository containing a scientifically modified version of the CLASS code**. The original structure, philosophy, and licensing of CLASS are preserved.
+This repository is **NOT an official GitHub fork of CLASS**. It is an **independent repository containing a modified version of the CLASS code**. The original structure, philosophy, and licensing of CLASS are preserved.
 
 As this code is a modified version of CLASS, users must also comply with the **citation requirements of the original CLASS code**. In particular, any scientific work using this code must cite at least the CLASS paper indicated in the original CLASS README:
 
@@ -125,7 +132,7 @@ make -j class
 
 ---
 
-## Citations (Mandatory)
+## Citations
 
 1. https://inspirehep.net/literature/1849615  
 2. https://inspirehep.net/literature/1869592  
@@ -134,6 +141,12 @@ make -j class
 5. https://inspirehep.net/literature/2765256  
 6. https://inspirehep.net/literature/2842645  
 7. Doctoral thesis: https://inspirehep.net/literature/2722259  
+
+The model was first introduced in:
+
+> M. Asghari, J. Beltrán Jiménez, S. Khosravi & D. F. Mota,  
+> *On structure formation from a small-scales-interacting dark sector*,  
+> arXiv:1902.05532.
 
 ---
 
@@ -145,5 +158,5 @@ Inherits the license and citation policy of CLASS.
 
 ## Contact
 
-David Figueruelo  
+**David Figueruelo**  
 david.figueruelo@ehu.eus
