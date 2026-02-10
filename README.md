@@ -66,6 +66,7 @@ Required `.ini` options:
 use_ppf = no
 Omega_Lambda = 0
 gauge = newtonian
+wa_fld = 0
 ```
 
 ---
@@ -84,38 +85,8 @@ The coupling parameter **α\*** is implemented as:
 ```ini
 alpha_model
 ```
-
-Defined in:
-- `input.c` (default `alpha_model = 0.0`)
-- `background.h` (`double alpha_model;`)
-
 ---
 
-## Modified Perturbation Equations
-
-### Dark Matter Velocity
-
-```c
-dy[pv->index_pt_theta_cdm] =
-  - a_prime_over_a * y[pv->index_pt_theta_cdm]
-  + metric_euler
-  + (pba->alpha_model * pow(a,4) * pba->H0 / pba->Omega0_cdm)
-    * (y[pv->index_pt_theta_fld] - y[pv->index_pt_theta_cdm]);
-```
-
-### Dark Energy Velocity
-
-```c
-dy[pv->index_pt_theta_fld] =
-  -(1 - 3*cs2) * a_prime_over_a * y[pv->index_pt_theta_fld]
-  + cs2 * k2 / (1 + w_fld) * y[pv->index_pt_delta_fld]
-  + metric_euler
-  - (pba->alpha_model * pow(a,4 + 3*w_fld) * pba->H0
-     / (pba->Omega0_fld * (1 + w_fld)))
-    * (y[pv->index_pt_theta_fld] - y[pv->index_pt_theta_cdm]);
-```
-
----
 
 ## Input Files
 
@@ -124,14 +95,6 @@ Required options must always be set.
 
 ---
 
-## Compilation and Usage
-
-```bash
-make -j class
-./class mymodel.ini
-```
-
----
 
 ## Citations
 
@@ -161,3 +124,7 @@ Inherits the license and citation policy of CLASS.
 
 **David Figueruelo**  
 david.figueruelo@ehu.eus
+
+Universidad del País Vasco/Euskal Herriko Unibertsitatea (UPV/EHU)
+Facultad de Ciencia y Tecnología
+Investigador especialización doctores (2024)
