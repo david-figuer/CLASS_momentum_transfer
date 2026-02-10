@@ -1,118 +1,87 @@
-CLASS: Cosmic Linear Anisotropy Solving System  {#mainpage}
-==============================================
+# CLASS with Dark Energy–Dark Matter Elastic Interaction (Legacy Version)
 
-Authors: Julien Lesgourgues and Thomas Tram
+⚠️ **THIS IS A LEGACY / ARCHIVED VERSION — NOT UNDER ACTIVE DEVELOPMENT** ⚠️
 
-with several major inputs from other people, especially Benjamin
-Audren, Simon Prunet, Jesus Torrado, Miguel Zumalacarregui, Francesco
-Montanari, etc.
+This repository branch contains an **old implementation** of the Dark Energy–Dark Matter elastic momentum-transfer model based on **CLASS v2.7.2**.
 
-For download and information, see http://class-code.net
+👉 **For all practical purposes, users should use the current implementation based on CLASS v3.3.4**, available in the main branch of this repository:
 
+**Current version (recommended):**  
+https://github.com/david-figuer/CLASS_momentum_transfer
 
-Compiling CLASS and getting started
------------------------------------
+---
 
-(the information below can also be found on the webpage, just below
-the download button)
+## Status of this version
 
-Download the code from the webpage and unpack the archive (tar -zxvf
-class_vx.y.z.tar.gz), or clone it from
-https://github.com/lesgourg/class_public. Go to the class directory
-(cd class/ or class_public/ or class_vx.y.z/) and compile (make clean;
-make class). You can usually speed up compilation with the option -j:
-make -j class. If the first compilation attempt fails, you may need to
-open the Makefile and adapt the name of the compiler (default: gcc),
-of the optimization flag (default: -O4 -ffast-math) and of the OpenMP
-flag (default: -fopenmp; this flag is facultative, you are free to
-compile without OpenMP if you don't want parallel execution; note that
-you need the version 4.2 or higher of gcc to be able to compile with
--fopenmp). Many more details on the CLASS compilation are given on the
-wiki page
+- **Status:** Legacy / archived  
+- **Maintenance:** ❌ Not maintained  
+- **Bug fixes:** ❌ No  
+- **New features:** ❌ No  
+- **Compatibility:** CLASS v2.7.2  
 
-https://github.com/lesgourg/class_public/wiki/Installation
+This version is preserved **for reproducibility purposes only**, e.g.:
+- comparison with early results,
+- validation of previously published analyses,
+- archival reference.
 
-(in particular, for compiling on Mac >= 10.9 despite of the clang
-incompatibility with OpenMP).
+---
 
-To check that the code runs, type:
+## Relation to the current version
 
-    ./class explanatory.ini
+This legacy implementation predates the current version of the code and was developed before the migration to newer CLASS releases.
 
-The explanatory.ini file is THE reference input file, containing and
-explaining the use of all possible input parameters. We recommend to
-read it, to keep it unchanged (for future reference), and to create
-for your own purposes some shorter input files, containing only the
-input lines which are useful for you. Input files must have a *.ini
-extension.
+The **actively maintained version**, with improved structure, updated CLASS base (v3.3.4), and a clearer implementation, is available at:
 
-If you want to play with the precision/speed of the code, you can use
-one of the provided precision files (e.g. cl_permille.pre) or modify
-one of them, and run with two input files, for instance:
+👉 **https://github.com/david-figuer/CLASS_momentum_transfer**
 
-    ./class test.ini cl_permille.pre
+Users are **strongly encouraged** to use the current version instead of this one.
 
-The files *.pre are suppposed to specify the precision parameters for
-which you don't want to keep default values. If you find it more
-convenient, you can pass these precision parameter values in your *.ini
-file instead of an additional *.pre file.
+---
 
-The automatically-generated documentation is located in
+## Origin and attribution
 
-    doc/manual/html/index.html
-    doc/manual/CLASS_manual.pdf
+This code is a **modified version of CLASS (Cosmic Linear Anisotropy Solving System)**.
 
-On top of that, if you wish to modify the code, you will find lots of
-comments directly in the files.
+CLASS is originally developed by:
+- Julien Lesgourgues  
+- Thomas Tram  
+- Nils Schoeneberg  
 
-Python
-------
-
-To use CLASS from python, or ipython notebooks, or from the Monte
-Python parameter extraction code, you need to compile not only the
-code, but also its python wrapper. This can be done by typing just
-'make' instead of 'make class' (or for speeding up: 'make -j'). More
-details on the wrapper and its compilation are found on the wiki page
-
-https://github.com/lesgourg/class_public/wiki
-
-Plotting utility
-----------------
-
-Since version 2.3, the package includes an improved plotting script
-called CPU.py (Class Plotting Utility), written by Benjamin Audren and
-Jesus Torrado. It can plot the Cl's, the P(k) or any other CLASS
-output, for one or several models, as well as their ratio or percentage
-difference. The syntax and list of available options is obtained by
-typing 'pyhton CPU.py -h'. There is a similar script for MATLAB,
-written by Thomas Tram. To use it, once in MATLAB, type 'help
-plot_CLASS_output.m'
-
-Developing the code
---------------------
-
-If you want to develop the code, we suggest that you download it from
-the github webpage
-
+Original CLASS repository:  
 https://github.com/lesgourg/class_public
 
-rather than from class-code.net. Then you will enjoy all the feature
-of git repositories. You can even develop your own branch and get it
-merged to the public distribution. For related instructions, check
+This is **not an official GitHub fork of CLASS**.  
+It is an independent scientific modification.
 
-https://github.com/lesgourg/class_public/wiki/Public-Contributing
+---
 
-Using the code
---------------
+## Scientific references
 
-You can use CLASS freely, provided that in your publications, you cite
-at least the paper `CLASS II: Approximation schemes <http://arxiv.org/abs/1104.2933>`. Feel free to cite more CLASS papers!
+If you use this legacy version for reproducibility studies, you must still cite the relevant literature.
 
-Support
--------
+The model was first introduced in:
 
-To get support, please open a new issue on the
+M. Asghari, J. Beltrán Jiménez, S. Khosravi & D. F. Mota,  
+*On structure formation from a small-scales-interacting dark sector*,  
+arXiv:1902.05532.
 
-https://github.com/lesgourg/class_public
+In addition, users must cite the original CLASS reference:
 
-webpage!
+CLASS II: Approximation schemes  
+https://arxiv.org/abs/1104.2933
+
+---
+
+## License
+
+This code inherits the same license and citation policy as the original CLASS distribution.
+
+---
+
+## Contact
+
+For questions related to the model or the current implementation, please refer to the **main branch** of this repository.
+
+David Figueruelo  
+david.figueruelo@ehu.eus
+
