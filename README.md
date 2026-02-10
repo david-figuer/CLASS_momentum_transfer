@@ -126,5 +126,4 @@ Inherits the license and citation policy of CLASS.
 david.figueruelo@ehu.eus
 
 Universidad del País Vasco/Euskal Herriko Unibertsitatea (UPV/EHU)
-Facultad de Ciencia y Tecnología
 Investigador especialización doctores (2024)
